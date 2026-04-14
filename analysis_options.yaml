@@ -1,4 +1,29 @@
 include: package:flutter_lints/flutter.yaml
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+analyzer:
+  errors:
+    unused_import: error
+    unused_local_variable: warning
+    duplicate_import: error
+    dead_code: warning
+    unused_element: warning
+    unused_field: warning
+    unused_shown_name: warning
+    unnecessary_cast: warning
+    unnecessary_null_comparison: warning
+
+linter:
+  rules:
+    always_use_package_imports: true
+    prefer_single_quotes: true
+    require_trailing_commas: true
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
+    prefer_final_locals: true
+    unnecessary_this: true
+    avoid_unnecessary_containers: true
+    avoid_redundant_argument_values: true
+    avoid_void_async: true
+    avoid_types_as_parameter_names: true
+    avoid_empty_else: true
+    avoid_init_to_null: true
