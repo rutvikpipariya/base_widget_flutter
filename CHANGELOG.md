@@ -1,4 +1,4 @@
-## 1.0.3
+## 1.0.4
 
 * Stable release of base_widget_flutter package
 * Added reusable base widgets for faster UI development

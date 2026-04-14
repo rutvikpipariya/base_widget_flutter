@@ -1,6 +1,6 @@
 name: base_widget_flutter
 description: A lightweight Flutter package that provides a reusable BaseWidget wrapper around Scaffold for consistent UI structure, simplifying screen development with optional AppBar support.
-version: 1.0.3
+version: 1.0.4
 homepage: https://github.com/rutvikpipariya/base_widget_flutter
 
 environment:
@@ -14,3 +14,6 @@ dev_dependencies:
   flutter_lints: ^6.0.0
 
 flutter:
+  platforms:
+    android:
+    ios:

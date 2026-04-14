@@ -16,7 +16,7 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  base_widget_flutter: ^1.0.3
+  base_widget_flutter: ^1.0.4
 ```
 
 Then run:
