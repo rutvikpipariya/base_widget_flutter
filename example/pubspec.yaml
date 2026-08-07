@@ -1,0 +1,16 @@
+name: base_widget_flutter_example
+description: Example app demonstrating the base_widget_flutter package.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  base_widget_flutter:
+    path: ../
+
+flutter:
+  uses-material-design: true
