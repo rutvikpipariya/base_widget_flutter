@@ -1,2 +1,33 @@
+# A .pubignore REPLACES .gitignore for publishing, so everything that must
+# stay out of the archive has to be listed here, not only the extras.
+
+# Flutter/Dart/Pub related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+
+# Build outputs
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/App.framework
+ios/.generated/
+android/.gradle/
+android/app/*.iml
+
+# Editors and tooling
+.vscode/
 .idea/
+*.iml
 .claude/
+
+# Miscellaneous
+*.log
+*.DS_Store
+*.swp
+
+example/.dart_tool/
+example/build/
