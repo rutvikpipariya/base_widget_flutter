@@ -1,5 +1,5 @@
 name: base_widget_flutter
-description: A Flutter BaseWidget wrapping Scaffold with a loading overlay, safe area, keyboard dismissal and back-navigation control, so every screen shares one structure.
+description: A Flutter BaseWidget wrapping Scaffold with a loading overlay and back-navigation control, plus weight-named text styles, hex colour parsing and a tintable SVG widget.
 version: 2.0.0
 repository: https://github.com/rutvikpipariya/base_widget_flutter
 issue_tracker: https://github.com/rutvikpipariya/base_widget_flutter/issues
@@ -8,14 +8,19 @@ topics:
   - ui
   - widgets
   - scaffold
-  - loading
+  - theming
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.9.0
 
 dependencies:
   flutter:
     sdk: flutter
+  dio: ^5.9.0
+  flutter_local_notifications: ^22.0.1
+  flutter_svg: ^2.3.0
+  geolocator: ^14.0.2
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

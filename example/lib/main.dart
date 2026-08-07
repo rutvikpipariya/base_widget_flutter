@@ -1,7 +1,14 @@
 import 'package:base_widget_flutter/base_widget_flutter.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const ExampleApp());
+void main() {
+  // Configure the fonts once; every BaseTextStyles.instance getter uses them.
+  BaseTextStyles.instance = BaseTextStyles(
+    fontSize: 14,
+    color: '151D31'.toColor(),
+  );
+  runApp(const ExampleApp());
+}
 
 class ExampleApp extends StatelessWidget {
   const ExampleApp({super.key});
@@ -48,18 +55,41 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: _save,
         child: const Icon(Icons.save),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
         child: Column(
           spacing: 16,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Tap the save button to see the loading overlay.'),
-            TextField(
+            Text('Weights', style: BaseTextStyles.instance.bold),
+            Text('Light', style: BaseTextStyles.instance.light),
+            Text('Regular', style: BaseTextStyles.instance.regular),
+            Text('Semi bold', style: BaseTextStyles.instance.semiBold),
+            // Any style is a plain TextStyle, so copyWith varies just one.
+            Text(
+              'Bold, 24px',
+              style: BaseTextStyles.instance.bold.copyWith(fontSize: 24),
+            ),
+            Text(
+              'Hex colours',
+              style: BaseTextStyles.instance.bold.copyWith(
+                color: '#1364FF'.toColor(),
+              ),
+            ),
+            // Uncomment once you have an SVG in the example's assets:
+            // const SvgImageWidget(
+            //   asset: 'assets/icons/search.svg',
+            //   height: 24,
+            //   color: Colors.indigo,
+            //   semanticsLabel: 'Search',
+            // ),
+            const TextField(
               decoration: InputDecoration(
                 labelText: 'Tap outside to dismiss the keyboard',
                 border: OutlineInputBorder(),
               ),
             ),
+            const Text('Tap save to see the loading overlay.'),
           ],
         ),
       ),
