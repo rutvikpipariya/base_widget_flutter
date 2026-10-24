@@ -30,3 +30,9 @@ android/app/*.iml
 
 # Local archives
 *.zip
+
+# Kept local only: tests and Python tooling are not pushed to GitHub.
+test/
+example/test/
+tool/
+*.py

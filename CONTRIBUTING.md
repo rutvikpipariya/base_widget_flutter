@@ -18,14 +18,12 @@ cd example && flutter run
 | `lib/base/` | Widgets and helpers: `BaseWidget`, `BaseStateView`, `BaseTextStyles`, `HexColor`, `SvgImageWidget` |
 | `lib/service/` | `BaseApiClient`, `BasePrefs`, `BaseLocationService`, `BaseNotificationService` |
 | `example/` | Three-tab showcase app |
-| `tool/` | Banner generator |
 
 ## Before opening a pull request
 
 ```sh
-dart format lib test example/lib
+dart format lib example/lib
 flutter analyze
-flutter test
 ```
 
 Keep widgets theme-driven (no hardcoded colours) and document every public API.
