@@ -11,6 +11,8 @@ analyzer:
     unused_shown_name: warning
     unnecessary_cast: warning
     unnecessary_null_comparison: warning
+  exclude:
+    - build/**
 
 linter:
   rules:
