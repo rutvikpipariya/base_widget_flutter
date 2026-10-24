@@ -1,0 +1,28 @@
+name: Bug report
+description: Something doesn't work as documented.
+labels: [bug]
+body:
+  - type: input
+    id: api
+    attributes:
+      label: Affected API
+      placeholder: BaseWidget, BaseStateView, BaseApiClient…
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you expected, what happened instead, and screenshots if possible.
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: Minimal code
+      render: dart
+  - type: textarea
+    id: doctor
+    attributes:
+      label: flutter doctor -v
+      render: text

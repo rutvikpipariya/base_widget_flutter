@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.1.0
+
+**New**
+
+* `BaseStateView` — one widget for the loading, empty, error and content
+  states of a screen, with a cross-fade, a retry button and builders to
+  replace any state.
+* `BaseWidget.loadingMessage` shows text under the loading indicator.
+* `BaseWidget.loadingBlur` blurs the screen behind the loading overlay.
+* `BaseWidget.loadingBarrierColor` customises the overlay colour.
+* `BaseWidget.onRefresh` adds pull-to-refresh.
+* The loading overlay now fades in and out.
+
+**Docs**
+
+* README redesign with a banner, animated demo and screenshots.
+* The example app is now a three-tab showcase.
+* Every library has dartdoc.
+
 ## 2.0.0
 
 **Breaking changes**

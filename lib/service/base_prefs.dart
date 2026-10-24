@@ -1,3 +1,6 @@
+/// [BasePrefs]: synchronous `SharedPreferences` after a one-time `init()`.
+library;
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Synchronous access to [SharedPreferences] after a one-time [init].

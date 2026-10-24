@@ -1,3 +1,9 @@
+/// [BaseWidget]: a `Scaffold` wrapper with a loading overlay, pull-to-refresh
+/// and back-navigation control.
+library;
+
+import 'dart:ui' show ImageFilter;
+
 import 'package:flutter/material.dart';
 
 /// A [Scaffold] wrapper that gives every screen in an app the same structure.
@@ -23,6 +29,10 @@ class BaseWidget extends StatelessWidget {
     this.canPop = true,
     this.isLoading = false,
     this.loadingIndicator,
+    this.loadingMessage,
+    this.loadingBlur = 0,
+    this.loadingBarrierColor,
+    this.onRefresh,
     this.dismissKeyboardOnTap = false,
     this.safeArea = false,
     this.backgroundColor,
@@ -55,6 +65,28 @@ class BaseWidget extends StatelessWidget {
   /// Defaults to a centered [CircularProgressIndicator].
   final Widget? loadingIndicator;
 
+  /// Optional text shown under the loading indicator, e.g. `'Saving…'`.
+  final String? loadingMessage;
+
+  /// Blur applied to [body] behind the loading overlay, as a Gaussian sigma.
+  ///
+  /// `0` (the default) disables the blur. Values around `4`–`8` give a soft,
+  /// frosted look.
+  final double loadingBlur;
+
+  /// Colour of the barrier behind the loading indicator.
+  ///
+  /// Defaults to [Colors.black54], or [Colors.black26] when [loadingBlur] is
+  /// set so the blur stays visible.
+  final Color? loadingBarrierColor;
+
+  /// Enables pull-to-refresh on [body].
+  ///
+  /// The returned future keeps the refresh indicator visible until it
+  /// completes. [body] must be scrollable (a `ListView`, `CustomScrollView`…);
+  /// use `AlwaysScrollableScrollPhysics` so short lists can still be pulled.
+  final RefreshCallback? onRefresh;
+
   /// Whether tapping outside a focused field unfocuses it and hides the
   /// keyboard.
   final bool dismissKeyboardOnTap;
@@ -86,21 +118,31 @@ class BaseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget content = body;
 
+    if (onRefresh != null) {
+      content = RefreshIndicator(onRefresh: onRefresh!, child: content);
+    }
+
     if (safeArea) {
       content = SafeArea(child: content);
     }
 
-    if (isLoading) {
-      content = Stack(
-        children: [
-          content,
-          const Positioned.fill(
-            child: ModalBarrier(dismissible: false, color: Colors.black54),
+    content = Stack(
+      children: [
+        content,
+        Positioned.fill(
+          // Fades the overlay in and out instead of popping it.
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: isLoading
+                ? KeyedSubtree(
+                    key: const ValueKey('loading'),
+                    child: _buildOverlay(context),
+                  )
+                : const SizedBox.shrink(),
           ),
-          Center(child: loadingIndicator ?? const CircularProgressIndicator()),
-        ],
-      );
-    }
+        ),
+      ],
+    );
 
     if (dismissKeyboardOnTap) {
       content = GestureDetector(
@@ -122,6 +164,53 @@ class BaseWidget extends StatelessWidget {
         endDrawer: endDrawer,
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       ),
+    );
+  }
+
+  Widget _buildOverlay(BuildContext context) {
+    final barrier = ModalBarrier(
+      dismissible: false,
+      color:
+          loadingBarrierColor ??
+          (loadingBlur > 0 ? Colors.black26 : Colors.black54),
+    );
+    final indicator = loadingIndicator ?? const CircularProgressIndicator();
+    final message = loadingMessage;
+
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        if (loadingBlur > 0)
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: loadingBlur, sigmaY: loadingBlur),
+            child: barrier,
+          )
+        else
+          barrier,
+        Center(
+          child: message == null
+              ? indicator
+              : Card(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 28,
+                      vertical: 24,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        indicator,
+                        const SizedBox(height: 16),
+                        Text(
+                          message,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+        ),
+      ],
     );
   }
 }

@@ -1,14 +1,28 @@
 name: base_widget_flutter
-description: A Flutter BaseWidget wrapping Scaffold with a loading overlay and back-navigation control, plus weight-named text styles, hex colour parsing and a tintable SVG widget.
-version: 2.0.0
+description: >-
+  Scaffold wrapper with a blurred loading overlay, pull-to-refresh, loading /
+  empty / error states, text styles, hex colours, SVG, API and prefs helpers.
+version: 2.1.0
+homepage: https://github.com/rutvikpipariya/base_widget_flutter
 repository: https://github.com/rutvikpipariya/base_widget_flutter
 issue_tracker: https://github.com/rutvikpipariya/base_widget_flutter/issues
 
 topics:
-  - ui
-  - widgets
+  - widget
   - scaffold
-  - theming
+  - loading
+  - state
+  - ui
+
+screenshots:
+  - description: base_widget_flutter, one base widget for every screen.
+    path: screenshots/banner.png
+  - description: BaseStateView switching between loading, empty, error and content.
+    path: screenshots/demo/states.gif
+  - description: Blurred loading overlay with a message.
+    path: screenshots/overlay.png
+  - description: An orders list with pull-to-refresh, shown by BaseStateView.
+    path: screenshots/states.png
 
 environment:
   sdk: ^3.9.0

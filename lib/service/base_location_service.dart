@@ -1,3 +1,6 @@
+/// [BaseLocationService]: current position with a reason when it fails.
+library;
+
 import 'package:geolocator/geolocator.dart';
 
 /// The reason a location read could not be satisfied.

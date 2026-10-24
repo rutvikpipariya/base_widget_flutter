@@ -1,3 +1,6 @@
+/// [HexColor]: parse `'#1364FF'`-style strings into [Color]s.
+library;
+
 import 'package:flutter/painting.dart';
 
 final RegExp _hexDigits = RegExp(r'^[0-9a-fA-F]+$');

@@ -130,4 +130,74 @@ void main() {
     expect(find.text('nav'), findsOneWidget);
     expect(find.byType(FloatingActionButton), findsOneWidget);
   });
+
+  testWidgets('loadingMessage is shown under the indicator', (tester) async {
+    await tester.pumpWidget(
+      _host(
+        const BaseWidget(
+          isLoading: true,
+          loadingMessage: 'Saving…',
+          body: Text('content'),
+        ),
+      ),
+    );
+
+    expect(find.text('Saving…'), findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets('loadingBlur blurs the body behind a lighter barrier', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      _host(
+        const BaseWidget(
+          isLoading: true,
+          loadingBlur: 6,
+          body: Text('content'),
+        ),
+      ),
+    );
+
+    expect(find.byType(BackdropFilter), findsOneWidget);
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is ModalBarrier && widget.color == Colors.black26,
+      ),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('the loading overlay fades out when loading ends', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      _host(const BaseWidget(isLoading: true, body: Text('content'))),
+    );
+    await tester.pumpWidget(_host(const BaseWidget(body: Text('content'))));
+    await tester.pumpAndSettle();
+
+    expect(_loadingBarrier, findsNothing);
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+  });
+
+  testWidgets('onRefresh enables pull-to-refresh', (tester) async {
+    var refreshed = 0;
+    await tester.pumpWidget(
+      _host(
+        BaseWidget(
+          onRefresh: () async => refreshed++,
+          body: ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            children: const [SizedBox(height: 100, child: Text('row'))],
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(RefreshIndicator), findsOneWidget);
+    await tester.fling(find.text('row'), const Offset(0, 400), 1000);
+    await tester.pumpAndSettle();
+    expect(refreshed, 1);
+  });
 }

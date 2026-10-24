@@ -31,3 +31,13 @@ android/app/*.iml
 
 example/.dart_tool/
 example/build/
+
+# Local archives
+*.zip
+
+# README-only media (loaded from GitHub) and repository tooling
+screenshots/demo/*
+!screenshots/demo/states.gif
+tool/
+.github/
+CONTRIBUTING.md

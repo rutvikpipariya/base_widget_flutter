@@ -27,3 +27,6 @@ android/app/*.iml
 *.lock
 *.DS_Store
 *.swp
+
+# Local archives
+*.zip

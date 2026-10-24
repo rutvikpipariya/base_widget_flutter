@@ -1,3 +1,6 @@
+/// [BaseTextStyles]: one font configuration, nine weight-named text styles.
+library;
+
 import 'package:flutter/painting.dart';
 
 /// Weight-named [TextStyle]s built from a single font configuration.

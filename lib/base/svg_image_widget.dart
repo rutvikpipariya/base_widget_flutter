@@ -1,3 +1,6 @@
+/// [SvgImageWidget]: an SVG asset tinted with a plain [Color].
+library;
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

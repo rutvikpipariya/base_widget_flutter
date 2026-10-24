@@ -1,3 +1,7 @@
+/// [BaseNotificationService]: local notifications from one pre-configured
+/// channel.
+library;
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 /// Shows local notifications from one pre-configured channel.
