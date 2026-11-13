@@ -2,7 +2,7 @@ name: base_widget_flutter
 description: >-
   Scaffold wrapper with a blurred loading overlay, pull-to-refresh, loading /
   empty / error states, text styles, hex colours, SVG, API and prefs helpers.
-version: 2.1.0
+version: 2.1.5
 homepage: https://github.com/rutvikpipariya/base_widget_flutter
 repository: https://github.com/rutvikpipariya/base_widget_flutter
 issue_tracker: https://github.com/rutvikpipariya/base_widget_flutter/issues
